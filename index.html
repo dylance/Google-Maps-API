@@ -31,12 +31,17 @@ https://developers.google.com/maps/documentation/javascript/fusiontableslayer
         <link rel="stylesheet" href="css/bootstrap.css">
     </head>
     <body>
-        <div class="container">
+    <div class="container">
       <div class="options-box">
         <h1>Check the surf</h1>
         <div>
           <input id="show-listings" type="button" value="Show Spots">
           <input id="hide-listings" type="button" value="Hide Spots">
+          <div class="spot-list">
+              <ul data-bind="foreach: spotList" id="spot-list">
+                <li data-bind="text: title, click: $parent.setCat" ></li>
+              </ul>
+          </div>
         </div>
       </div>
       <div id="map"></div>
