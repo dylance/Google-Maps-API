@@ -98,14 +98,7 @@ function initMap() {
     });
 
     // Marker Locations
-    var locations = [
-        {title: 'Pt Dume', location: {lat: 34.001201,lng: -118.806442}},
-        {title: 'Leo Carillo', location: {lat: 34.044551,lng:-118.940695}},
-        {title: 'County Line', location: {lat: 34.051425,lng: -118.95996}},
-        {title: 'Malibu Pt', location: {lat: 34.036265 ,lng: -118.67795}},
-        {title: 'Westward Beach', location: {lat: 34.008341 ,lng: -118.814812}}
-    ];
-
+    
     var largeInfowindow = new google.maps.InfoWindow();
 
     // Style the markers a bit. This will be our listing marker icon.
@@ -119,10 +112,10 @@ function initMap() {
     ///////
     // creates array of markers
 
-    for (var i = 0; i < locations.length; i++) {
+    for (var i = 0; i < surfSpots.length; i++) {
 
-        var position = locations[i].location;
-        var title = locations[i].title
+        var position = surfSpots[i].location;
+        var title = surfSpots[i].title
 
         var marker = new google.maps.Marker({
             position: position,
