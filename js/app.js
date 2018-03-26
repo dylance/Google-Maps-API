@@ -155,16 +155,11 @@ function initMap() {
     document.getElementById('show-listings').addEventListener('click', showListings);
     document.getElementById('hide-listings').addEventListener('click', hideListings);
 
-}
-
-var surfSpot = function(data){
-
-    this.name = ko.observable(data.name)
-    // TO DO: Add Images
-    // this.imgSrc = ko.observableArray(data.imgSrc)
-    // this.nickName = ko.observableArray(data.nickName)
+    ko.applyBindings(new ViewModel())
 
 }
+
+
     // map.fitBounds(bounds);
     // populates info window whem marker is clicked.
 function populateInfoWindow(marker, infowindow){
@@ -209,16 +204,27 @@ function populateInfoWindow(marker, infowindow){
     }
 }
 
+var surfSpot = function(data){
+    console.log(data.title)
+    this.name = ko.observable(data.title)
+    //console.log(data.title)
+    // TO DO: Add Images
+    // this.imgSrc = ko.observableArray(data.imgSrc)
+    // this.nickName = ko.observableArray(data.nickName)
+
+}
+
 var ViewModel = function(){
     var self = this
 
     this.spotList = ko.observableArray([])
 
-    initialSpots.forEach(function(surfSpot){
+    data.forEach(function(spot){
+      //console.log(spot)
       self.spotList.push(new surfSpot(spot) )
     })
 
-    this.currentCat = ko.observable( this.catList()[0] );
+    //this.currentCat = ko.observable( this.catList()[0] );
 
 
 
