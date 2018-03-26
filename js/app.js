@@ -1,7 +1,7 @@
 //steven bryder? udemy
 var map;
 var markers = [];
-var data = [
+var surfSpots = [
     {title: 'Pt Dume', location: {lat: 34.001201,lng: -118.806442}},
     {title: 'Leo Carillo', location: {lat: 34.044551,lng:-118.940695}},
     {title: 'County Line', location: {lat: 34.051425,lng: -118.95996}},
@@ -219,16 +219,12 @@ var ViewModel = function(){
 
     this.spotList = ko.observableArray([])
 
-    data.forEach(function(spot){
+    surfSpots.forEach(function(spot){
       //console.log(spot)
       self.spotList.push(new surfSpot(spot) )
     })
 
     //this.currentCat = ko.observable( this.catList()[0] );
-
-
-
-
 
 }
 // This function will loop through the markers array and display them all.
