@@ -145,8 +145,8 @@ function initMap() {
          });
     }
 
-    document.getElementById('show-listings').addEventListener('click', showListings);
-    document.getElementById('hide-listings').addEventListener('click', hideListings);
+    document.getElementById('show-spots').addEventListener('click', showListings);
+    document.getElementById('hide-spots').addEventListener('click', hideListings);
 
     ko.applyBindings(new ViewModel())
 
