@@ -123,7 +123,9 @@ function initMap() {
             title: title,
             animation: google.maps.Animation.DROP,
             icon: defaultIcon,
-            id: i
+            id: i,
+            // below lines allow markers to be visible at beginning of map creation. 
+            //map: map
         });
 
         markers.push(marker);
@@ -202,7 +204,9 @@ function showListings() {
     var bounds = new google.maps.LatLngBounds();
     // Extend the boundaries of the map for each marker and display the marker
     for (var i = 0; i < markers.length; i++) {
+        // adds marker later to a map
         markers[i].setMap(map);
+        // extends the bounds to contain the given point
         bounds.extend(markers[i].position);
     }
     map.fitBounds(bounds);
