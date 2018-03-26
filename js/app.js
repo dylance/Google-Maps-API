@@ -13,7 +13,7 @@ function initMap() {
     //Constructor creates a new map - only center and zoom are required
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 34.001201, lng: -118.806442},
-        zoom: 13,
+        zoom: 12,
         styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -98,7 +98,7 @@ function initMap() {
     });
 
     // Marker Locations
-    
+
     var largeInfowindow = new google.maps.InfoWindow();
 
     // Style the markers a bit. This will be our listing marker icon.
