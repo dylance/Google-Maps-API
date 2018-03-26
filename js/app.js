@@ -156,9 +156,7 @@ var ViewModel = function(){
     this.d = ko.observable('hide spots!')
 
     this.spotList = ko.observableArray([])
-
-
-
+    
     surfSpots.forEach(function(spot){
         self.spotList.push(new surfSpot(spot))
     })
@@ -166,7 +164,7 @@ var ViewModel = function(){
     this.showSpot = function(clickedSpot){
         clickedSpot.marker.setMap(map)
     }
-
+    // This function will loop through the markers array and display them all.
     this.showListings = function(){
         var bounds = new google.maps.LatLngBounds();
         // Extend the boundaries of the map for each marker and display the marker
@@ -175,6 +173,12 @@ var ViewModel = function(){
             bounds.extend(spot.position);
         })
         map.fitBounds(bounds);
+    }
+    // This function will loop through the listings and hide them all.
+    this.hideListings = function(){
+        self.spotList().forEach(function(spot){
+            spot.marker.setMap(null)
+        })
     }
 }
 // populates info window whem marker is clicked.
@@ -217,15 +221,6 @@ function populateInfoWindow(marker, infowindow){
     streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
     //open info window on correct marker
     infowindow.open(map, marker);
-    }
-}
-// This function will loop through the markers array and display them all.
-
-// This function will loop through the listings and hide them all.
-function hideListings() {
-    for (var i = 0; i < markers.length; i++) {
-        // removes marker from map
-        markers[i].setMap(null);
     }
 }
 // This function takes in a COLOR, and then creates a new marker
