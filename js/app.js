@@ -1,7 +1,13 @@
 //steven bryder? udemy
 var map;
 var markers = [];
-var data = null
+var data = [
+    {title: 'Pt Dume', location: {lat: 34.001201,lng: -118.806442}},
+    {title: 'Leo Carillo', location: {lat: 34.044551,lng:-118.940695}},
+    {title: 'County Line', location: {lat: 34.051425,lng: -118.95996}},
+    {title: 'Malibu Pt', location: {lat: 34.036265 ,lng: -118.67795}},
+    {title: 'Westward Beach', location: {lat: 34.008341 ,lng: -118.814812}}
+]
 
 function initMap() {
     //Constructor creates a new map - only center and zoom are required
@@ -124,7 +130,7 @@ function initMap() {
             animation: google.maps.Animation.DROP,
             icon: defaultIcon,
             id: i,
-            // below lines allow markers to be visible at beginning of map creation. 
+            // below lines allow markers to be visible at beginning of map creation.
             //map: map
         });
 
@@ -148,6 +154,15 @@ function initMap() {
 
     document.getElementById('show-listings').addEventListener('click', showListings);
     document.getElementById('hide-listings').addEventListener('click', hideListings);
+
+}
+
+var surfSpot = function(data){
+
+    this.name = ko.observable(data.name)
+    // TO DO: Add Images
+    // this.imgSrc = ko.observableArray(data.imgSrc)
+    // this.nickName = ko.observableArray(data.nickName)
 
 }
     // map.fitBounds(bounds);
@@ -197,6 +212,17 @@ function populateInfoWindow(marker, infowindow){
 var ViewModel = function(){
     var self = this
 
+    this.spotList = ko.observableArray([])
+
+    initialSpots.forEach(function(surfSpot){
+      self.spotList.push(new surfSpot(spot) )
+    })
+
+    this.currentCat = ko.observable( this.catList()[0] );
+
+
+
+
 
 }
 // This function will loop through the markers array and display them all.
@@ -214,6 +240,7 @@ function showListings() {
 // This function will loop through the listings and hide them all.
 function hideListings() {
     for (var i = 0; i < markers.length; i++) {
+        // removes marker from map
         markers[i].setMap(null);
     }
 }
