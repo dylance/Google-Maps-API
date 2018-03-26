@@ -1,7 +1,6 @@
-var map;
 //steven bryder? udemy
+var map;
 var markers = [];
-
 var data = null
 
 function initMap() {
@@ -146,12 +145,11 @@ function initMap() {
     }
 
     document.getElementById('show-listings').addEventListener('click', showListings);
-       document.getElementById('hide-listings').addEventListener('click', hideListings);
+    document.getElementById('hide-listings').addEventListener('click', hideListings);
 
 }
     // map.fitBounds(bounds);
     // populates info window whem marker is clicked.
-
 function populateInfoWindow(marker, infowindow){
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
@@ -199,7 +197,6 @@ var ViewModel = function(){
 
 
 }
-
 // This function will loop through the markers array and display them all.
 function showListings() {
     var bounds = new google.maps.LatLngBounds();
