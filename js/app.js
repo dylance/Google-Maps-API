@@ -152,7 +152,12 @@ var surfSpot = function(data){
 var ViewModel = function(){
     var self = this
 
+    this.s = ko.observable('show spots!')
+    this.d = ko.observable('hide spots!')
+
     this.spotList = ko.observableArray([])
+
+
 
     surfSpots.forEach(function(spot){
         self.spotList.push(new surfSpot(spot))
@@ -160,6 +165,16 @@ var ViewModel = function(){
 
     this.showSpot = function(clickedSpot){
         clickedSpot.marker.setMap(map)
+    }
+
+    this.showListings = function(){
+        var bounds = new google.maps.LatLngBounds();
+        // Extend the boundaries of the map for each marker and display the marker
+        self.spotList().forEach(function(spot){
+            spot.marker.setMap(map)
+            bounds.extend(spot.position);
+        })
+        map.fitBounds(bounds);
     }
 }
 // populates info window whem marker is clicked.
@@ -205,17 +220,7 @@ function populateInfoWindow(marker, infowindow){
     }
 }
 // This function will loop through the markers array and display them all.
-function showListings() {
-    var bounds = new google.maps.LatLngBounds();
-    // Extend the boundaries of the map for each marker and display the marker
-    for (var i = 0; i < markers.length; i++) {
-        // adds marker later to a map
-        markers[i].setMap(map);
-        // extends the bounds to contain the given point
-        bounds.extend(markers[i].position);
-    }
-    map.fitBounds(bounds);
-}
+
 // This function will loop through the listings and hide them all.
 function hideListings() {
     for (var i = 0; i < markers.length; i++) {
