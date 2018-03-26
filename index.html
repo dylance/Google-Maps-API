@@ -35,11 +35,11 @@ https://developers.google.com/maps/documentation/javascript/fusiontableslayer
       <div class="options-box">
         <h1>Check the surf</h1>
         <div>
-          <input id="show-spots" type="button" value="Show Spots">
-          <input id="hide-spots" type="button" value="Hide Spots">
+        <!--  <input id="show-spots" type="button" value="Show Spots">
+          <input id="hide-spots" type="button" value="Hide Spots"> -->
           <div class="spot-list">
-              <ul data-bind="foreach: surfSpots" id="spot-list">
-                <li data-bind="text: title"></li>
+              <ul data-bind="foreach: spotList">
+                <li data-bind="text: name, click: $parent.showSpot"></li>
               </ul>
           </div>
         </div>

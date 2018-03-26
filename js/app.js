@@ -1,6 +1,4 @@
-//steven bryder? udemy
 var map;
-var markers = [];
 var surfSpots = [
     {title: 'Pt Dume', location: {lat: 34.001201,lng: -118.806442}},
     {title: 'Leo Carillo', location: {lat: 34.044551,lng:-118.940695}},
@@ -97,64 +95,74 @@ function initMap() {
         mapTypeControl: false
     });
 
-    // Marker Locations
-
     var largeInfowindow = new google.maps.InfoWindow();
+
+    //var bounds = new google.maps.LatLngBounds();
+
+    // document.getElementById('show-spots').addEventListener('click', showListings);
+    // document.getElementById('hide-spots').addEventListener('click', hideListings);
+
+    ko.applyBindings(new ViewModel())
+}
+    // map.fitBounds(bounds);
+var surfSpot = function(data){
+    this.name = data.title
+    // TO DO: Add Images
+    // this.imgSrc = ko.observableArray(data.imgSrc)
+    // this.nickName = ko.observableArray(data.nickName)
+    this.position = data.location
 
     // Style the markers a bit. This will be our listing marker icon.
     var defaultIcon = makeMarkerIcon('0091ff');
-
     // Create a "highlighted location" marker color for when the user
     // mouses over the marker.
     var highlightedIcon = makeMarkerIcon('FFFF24');
-    ///////
-    //var bounds = new google.maps.LatLngBounds();
-    ///////
-    // creates array of markers
 
-    for (var i = 0; i < surfSpots.length; i++) {
-
-        var position = surfSpots[i].location;
-        var title = surfSpots[i].title
-
-        var marker = new google.maps.Marker({
-            position: position,
-            title: title,
+    this.marker = new google.maps.Marker({
+            position: this.position,
+            title: this.name,
             animation: google.maps.Animation.DROP,
             icon: defaultIcon,
-            id: i,
+            // May need to add id back
+            //id: i,
             // below lines allow markers to be visible at beginning of map creation.
             //map: map
-        });
+    });
+    //this.marker.setMap(map)
+    // don't think I need this anymore.
+    //markers.push(marker);
 
-        markers.push(marker);
+    //bounds.extend(marker.position);
 
-        //bounds.extend(marker.position);
+    //this.marker.addListener('click', function(){
+    //        populateInfoWindow(this,largeInfowindow);
+    //});
 
-        marker.addListener('click', function(){
-            populateInfoWindow(this,largeInfowindow);
-        });
+    // Two event listeners - one for mouseover, one for mouseout,
+    // to change the colors back and forth.
+    this.marker.addListener('mouseover', function() {
+        this.setIcon(highlightedIcon);
+    });
 
-        // Two event listeners - one for mouseover, one for mouseout,
-         // to change the colors back and forth.
-         marker.addListener('mouseover', function() {
-           this.setIcon(highlightedIcon);
-         });
-         marker.addListener('mouseout', function() {
-           this.setIcon(defaultIcon);
-         });
-    }
-
-    document.getElementById('show-spots').addEventListener('click', showListings);
-    document.getElementById('hide-spots').addEventListener('click', hideListings);
-
-    ko.applyBindings(new ViewModel())
-
+    this.marker.addListener('mouseout', function() {
+        this.setIcon(defaultIcon);
+    });
 }
 
+var ViewModel = function(){
+    var self = this
 
-    // map.fitBounds(bounds);
-    // populates info window whem marker is clicked.
+    this.spotList = ko.observableArray([])
+
+    surfSpots.forEach(function(spot){
+        self.spotList.push(new surfSpot(spot))
+    })
+
+    this.showSpot = function(clickedSpot){
+        clickedSpot.marker.setMap(map)
+    }
+}
+// populates info window whem marker is clicked.
 function populateInfoWindow(marker, infowindow){
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
@@ -189,36 +197,12 @@ function populateInfoWindow(marker, infowindow){
                 infowindow.setContent('<div>No Street View Found</div>');
             }
         }
-    // use street to get cloest streetview image within
-    // 50 meters of teh markers position
+        // use street to get cloest streetview image within
+        // 50 meters of teh markers position
     streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
     //open info window on correct marker
     infowindow.open(map, marker);
     }
-}
-
-var surfSpot = function(data){
-    console.log(data.title)
-    this.name = ko.observable(data.title)
-    //console.log(data.title)
-    // TO DO: Add Images
-    // this.imgSrc = ko.observableArray(data.imgSrc)
-    // this.nickName = ko.observableArray(data.nickName)
-
-}
-
-var ViewModel = function(){
-    var self = this
-
-    this.spotList = ko.observableArray([])
-
-    surfSpots.forEach(function(spot){
-      //console.log(spot)
-      self.spotList.push(new surfSpot(spot) )
-    })
-
-    //this.currentCat = ko.observable( this.catList()[0] );
-
 }
 // This function will loop through the markers array and display them all.
 function showListings() {
