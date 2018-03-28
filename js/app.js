@@ -154,9 +154,10 @@ var ViewModel = function(){
 
     this.s = ko.observable('show spots!')
     this.d = ko.observable('hide spots!')
+    this.query = ko.observable('')
 
     this.spotList = ko.observableArray([])
-    
+
     surfSpots.forEach(function(spot){
         self.spotList.push(new surfSpot(spot))
     })
