@@ -28,6 +28,10 @@ html,
         margin: 20px 0 20px 0;
         border: none;
       }
+
+      ul {
+  list-style-type: none;
+}
       #map {
         bottom:0px;
         height: 100%;
