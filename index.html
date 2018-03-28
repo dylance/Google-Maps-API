@@ -40,8 +40,9 @@ https://developers.google.com/maps/documentation/javascript/fusiontableslayer
         <!--  <input id="show-spots" type="button" value="Show Spots">
           <input id="hide-spots" type="button" value="Hide Spots"> -->
           <div class="spot-list">
-              <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
-              <ul data-bind="foreach: spotList">
+              <p>Filter: <input data-bind="textInput: filter, valueUpdate: 'afterkeydown'" /></p>
+             <!-- <p data-bind="text: filter"></p> -->
+              <ul data-bind="foreach: filteredItems">
                 <li data-bind="text: name, click: $parent.showSpot"></li>
               </ul>
           </div>

@@ -103,6 +103,7 @@ function initMap() {
     // document.getElementById('hide-spots').addEventListener('click', hideListings);
 
     ko.applyBindings(new ViewModel())
+
 }
     // map.fitBounds(bounds);
 var surfSpot = function(data){
@@ -111,6 +112,8 @@ var surfSpot = function(data){
     // this.imgSrc = ko.observableArray(data.imgSrc)
     // this.nickName = ko.observableArray(data.nickName)
     this.position = data.location
+
+    this.display = ko.observable(true)
 
     // Style the markers a bit. This will be our listing marker icon.
     var defaultIcon = makeMarkerIcon('0091ff');
@@ -123,17 +126,7 @@ var surfSpot = function(data){
             title: this.name,
             animation: google.maps.Animation.DROP,
             icon: defaultIcon,
-            // May need to add id back
-            //id: i,
-            // below lines allow markers to be visible at beginning of map creation.
-            //map: map
     });
-    //this.marker.setMap(map)
-    // don't think I need this anymore.
-    //markers.push(marker);
-
-    //bounds.extend(marker.position);
-
     //this.marker.addListener('click', function(){
     //        populateInfoWindow(this,largeInfowindow);
     //});
@@ -154,7 +147,7 @@ var ViewModel = function(){
 
     this.s = ko.observable('show spots!')
     this.d = ko.observable('hide spots!')
-    this.query = ko.observable('')
+    this.filter =  ko.observable('')
 
     this.spotList = ko.observableArray([])
 
@@ -181,6 +174,24 @@ var ViewModel = function(){
             spot.marker.setMap(null)
         })
     }
+
+    this.filteredItems = ko.computed(function(){
+        var filter2 = self.filter().toLowerCase();
+
+        if (!filter2){
+            return self.spotList()
+        }
+        else {
+            return ko.utils.arrayFilter(self.spotList(), function(spot){
+                if ( spot.name.toLowerCase().indexOf(filter2) >= 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            })
+        }
+    })
 }
 // populates info window whem marker is clicked.
 function populateInfoWindow(marker, infowindow){
