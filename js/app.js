@@ -95,7 +95,7 @@ function initMap() {
         mapTypeControl: false
     });
 
-    var largeInfowindow = new google.maps.InfoWindow();
+
 
     //var bounds = new google.maps.LatLngBounds();
 
@@ -105,8 +105,10 @@ function initMap() {
     ko.applyBindings(new ViewModel())
 
 }
-    // map.fitBounds(bounds);
+
 var surfSpot = function(data){
+
+    var largeInfowindow = new google.maps.InfoWindow();
     this.name = data.title
     // TO DO: Add Images
     // this.imgSrc = ko.observableArray(data.imgSrc)
@@ -127,9 +129,9 @@ var surfSpot = function(data){
             animation: google.maps.Animation.DROP,
             icon: defaultIcon,
     });
-    //this.marker.addListener('click', function(){
-    //        populateInfoWindow(this,largeInfowindow);
-    //});
+    this.marker.addListener('click', function(){
+            populateInfoWindow(this,largeInfowindow);
+    });
 
     // Two event listeners - one for mouseover, one for mouseout,
     // to change the colors back and forth.
@@ -203,6 +205,7 @@ function populateInfoWindow(marker, infowindow){
         infowindow.addListener('closeclick', function(){
             infowindow.setMarker(null);
         });
+        /* Commenting out google streeview temporarily
         var streetViewService = new google.maps.StreetViewService();
         var radius = 50;
         // In case the status is OK, which means the pano was found, compute the
@@ -230,7 +233,7 @@ function populateInfoWindow(marker, infowindow){
         }
         // use street to get cloest streetview image within
         // 50 meters of teh markers position
-    streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+    streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);*/
     //open info window on correct marker
     infowindow.open(map, marker);
     }
