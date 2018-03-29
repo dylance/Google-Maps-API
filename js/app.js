@@ -108,7 +108,7 @@ function initMap() {
 
 var surfSpot = function(data){
 
-    var largeInfowindow = new google.maps.InfoWindow();
+    var mSWurl = "http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id=277"
     this.name = data.title
     // TO DO: Add Images
     // this.imgSrc = ko.observableArray(data.imgSrc)
@@ -129,6 +129,9 @@ var surfSpot = function(data){
             animation: google.maps.Animation.DROP,
             icon: defaultIcon,
     });
+
+    var largeInfowindow = new google.maps.InfoWindow();
+
     this.marker.addListener('click', function(){
             populateInfoWindow(this,largeInfowindow);
     });
@@ -140,6 +143,7 @@ var surfSpot = function(data){
     });
 
     this.marker.addListener('mouseout', function() {
+        magicSeaWeedRequest(mSWurl);
         this.setIcon(defaultIcon);
     });
 }
@@ -250,4 +254,15 @@ function makeMarkerIcon(markerColor) {
     new google.maps.Point(10, 34),
     new google.maps.Size(21,34));
     return markerImage;
+}
+
+function logResults(data){
+    console.log(data[0].swell);
+}
+function magicSeaWeedRequest(url){
+    $.ajax({
+      url: url,
+      dataType: "jsonp",
+      jsonpCallback: "logResults"
+    });
 }
