@@ -1,10 +1,20 @@
 var map;
 var surfSpots = [
-    {title: 'Pt Dume', location: {lat: 34.001201,lng: -118.806442}},
-    {title: 'Leo Carillo', location: {lat: 34.044551,lng:-118.940695}},
-    {title: 'County Line', location: {lat: 34.051425,lng: -118.95996}},
-    {title: 'Malibu Pt', location: {lat: 34.036265 ,lng: -118.67795}},
-    {title: 'Westward Beach', location: {lat: 34.008341 ,lng: -118.814812}}
+    {title: 'Pt Dume',
+     location: {lat: 34.001201,lng: -118.806442},
+     MSWurl: 854},
+    {title: 'Leo Carillo',
+    location: {lat: 34.044551,lng:-118.940695},
+    MSWurl: 2642},
+    {title: 'County Line',
+    location: {lat: 34.051425,lng: -118.95996},
+    MSWurl: 277},
+    {title: 'Malibu Pt',
+    location: {lat: 34.036265 ,lng: -118.67795},
+    MSWurl: 279},
+    {title: 'Westward Beach',
+    location: {lat: 34.008341 ,lng: -118.814812},
+    MSWurl: 2610}
 ]
 
 function initMap() {
@@ -133,6 +143,7 @@ var surfSpot = function(data){
     var largeInfowindow = new google.maps.InfoWindow();
 
     this.marker.addListener('click', function(){
+            magicSeaWeedRequest(mSWurl);
             populateInfoWindow(this,largeInfowindow);
     });
 
@@ -143,7 +154,6 @@ var surfSpot = function(data){
     });
 
     this.marker.addListener('mouseout', function() {
-        magicSeaWeedRequest(mSWurl);
         this.setIcon(defaultIcon);
     });
 }
