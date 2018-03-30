@@ -2,21 +2,21 @@ var map;
 var surfSpots = [
     {title: 'Pt Dume',
      location: {lat: 34.001201,lng: -118.806442},
-     MSWurl: 854},
+     id: "854"},
     {title: 'Leo Carillo',
     location: {lat: 34.044551,lng:-118.940695},
-    MSWurl: 2642},
+    id: "2642"},
     {title: 'County Line',
     location: {lat: 34.051425,lng: -118.95996},
-    MSWurl: 277},
+    id: "277"},
     {title: 'Malibu Pt',
     location: {lat: 34.036265 ,lng: -118.67795},
-    MSWurl: 279},
+    id: "279"},
     {title: 'Westward Beach',
     location: {lat: 34.008341 ,lng: -118.814812},
-    MSWurl: 2610}
+    id: "2610"}
 ]
-
+var mSWurl = "http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id="
 function initMap() {
     //Constructor creates a new map - only center and zoom are required
     map = new google.maps.Map(document.getElementById('map'), {
@@ -117,9 +117,13 @@ function initMap() {
 }
 
 var surfSpot = function(data){
+    self = this
 
-    var mSWurl = "http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id=277"
     this.name = data.title
+    this.spotID = data.id
+    this.url = mSWurl + this.spotID
+    this.waveHeight = null;
+
     // TO DO: Add Images
     // this.imgSrc = ko.observableArray(data.imgSrc)
     // this.nickName = ko.observableArray(data.nickName)
@@ -143,7 +147,7 @@ var surfSpot = function(data){
     var largeInfowindow = new google.maps.InfoWindow();
 
     this.marker.addListener('click', function(){
-            magicSeaWeedRequest(mSWurl);
+            magicSeaWeedRequest(self.url);
             populateInfoWindow(this,largeInfowindow);
     });
 
