@@ -122,7 +122,8 @@ var surfSpot = function(data){
     this.name = data.title
     this.spotID = data.id
     this.url = mSWurl + this.spotID
-    this.waveHeight = null;
+    this.swellHeight = null;
+    this.swellDirection = null;
 
     // TO DO: Add Images
     // this.imgSrc = ko.observableArray(data.imgSrc)
@@ -218,7 +219,9 @@ var ViewModel = function(){
 function populateInfoWindow(marker, infowindow){
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
-        infowindow.setContent('<div>' + marker.title + '</div>' + '<div> Wave height: ' + self.waveHeight + '</div>');
+        infowindow.setContent('<div>' + marker.title + '</div>' +
+            '<div> Wave height: ' + self.swellHeight + '</div>' +
+            '<div> Wave direction: ' + self.swellDirection + '</div>');
         infowindow.open(map, marker);
         // clear marker property if info window closed
         infowindow.addListener('closeclick', function(){
@@ -273,7 +276,8 @@ function makeMarkerIcon(markerColor) {
 
 function logResults(data){
     //console.log(data[0].swell);
-    self.waveHeight = data[0].swell.components.combined.height
+    self.swellHeight = data[0].swell.components.primary.height
+    self.swellDirection = data[0].swell.components.primary.direction
 }
 function magicSeaWeedRequest(url){
     $.ajax({
