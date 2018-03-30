@@ -144,10 +144,11 @@ var surfSpot = function(data){
             icon: defaultIcon,
     });
 
+    magicSeaWeedRequest(this.url);
+
     var largeInfowindow = new google.maps.InfoWindow();
 
     this.marker.addListener('click', function(){
-            magicSeaWeedRequest(self.url);
             populateInfoWindow(this,largeInfowindow);
     });
 
@@ -217,7 +218,7 @@ var ViewModel = function(){
 function populateInfoWindow(marker, infowindow){
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
-        infowindow.setContent('<div>' + marker.title + '</div>');
+        infowindow.setContent('<div>' + marker.title + '</div>' + '<div> Wave height: ' + self.waveHeight + '</div>');
         infowindow.open(map, marker);
         // clear marker property if info window closed
         infowindow.addListener('closeclick', function(){
@@ -271,7 +272,8 @@ function makeMarkerIcon(markerColor) {
 }
 
 function logResults(data){
-    console.log(data[0].swell);
+    //console.log(data[0].swell);
+    self.waveHeight = data[0].swell.components.combined.height
 }
 function magicSeaWeedRequest(url){
     $.ajax({
