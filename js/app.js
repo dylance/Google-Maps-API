@@ -222,7 +222,7 @@ function populateInfoWindow(marker, infowindow){
         infowindow.open(map, marker);
         // clear marker property if info window closed
         infowindow.addListener('closeclick', function(){
-            infowindow.setMarker(null);
+            infowindow.setMarker = null ;
         });
         /* Commenting out google streeview temporarily
         var streetViewService = new google.maps.StreetViewService();
