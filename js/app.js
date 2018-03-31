@@ -300,7 +300,7 @@ function populateInfoWindow(marker, infowindow, self){
         // 50 meters of teh markers position
     streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);*/
     //open info window on correct marker
-    infowindow.open(map, marker);
+    //infowindow.open(map, marker);
     }
 }
 // This function takes in a COLOR, and then creates a new marker
