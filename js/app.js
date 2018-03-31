@@ -145,6 +145,7 @@ var surfSpot = function(data){
             icon: defaultIcon,
     });
 
+
     magCopy(self.url, this)();
 
     // $.getJSON(mSWurl).done(function(data){
@@ -192,7 +193,7 @@ var surfSpot = function(data){
    this.marker.addListener('click',( function(markerCopy){
            console.log(markerCopy.name)
            return function() {
-               populateInfoWindow(this,largeInfowindow,markerCopy);
+               populateInfoWindow(this,largeInfowindow, markerCopy);
            }
    })(self));
 
@@ -262,7 +263,7 @@ var ViewModel = function(){
 function populateInfoWindow(marker, infowindow, self){
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
-        infowindow.setContent('<div>' + marker.title + '</div>' +
+        infowindow.setContent('<div>' + self.name + '</div>' +
             '<div> Wave height: ' + self.swellHeight + '</div>' +
             '<div> Wave direction: ' + self.swellDirection + '</div>');
         infowindow.open(map, marker);
@@ -302,6 +303,8 @@ function populateInfoWindow(marker, infowindow, self){
     //open info window on correct marker
     //infowindow.open(map, marker);
     }
+    infowindow.open(map, marker);
+
 }
 // This function takes in a COLOR, and then creates a new marker
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
