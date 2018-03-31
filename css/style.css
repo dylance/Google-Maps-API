@@ -5,10 +5,11 @@ html,
         margin: 0;
         padding: 0;
       }
+      /*
       .container {
         height: 100%;
         position: relative;
-      }
+      } */
       input {
         font-size: 12px;
       }
@@ -35,10 +36,11 @@ html,
       #map {
         bottom:0px;
         height: 100%;
-        left: 242px;
-        position: absolute;
+        /*left: 242px;
+        position: absolute;*/
         right: 0px;
       }
+      /*
       .options-box {
         background: #fff;
         border: 1px solid #999;
@@ -48,7 +50,7 @@ html,
         padding: 10px 10px 30px 10px;
         text-align: left;
         width: 220px;
-      }
+      }*/
       #pano {
         width: 200px;
         height: 200px;
@@ -58,8 +60,3 @@ html,
       }
 
       .spotList:hover{cursor:pointer;}
-
-
-
-
-      
