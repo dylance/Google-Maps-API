@@ -145,13 +145,56 @@ var surfSpot = function(data){
             icon: defaultIcon,
     });
 
-    magicSeaWeedRequest(this.url);
+    magCopy(self.url, this)();
+
+    // $.getJSON(mSWurl).done(function(data){
+    //     self.swellHeight = data[0].swell.components.primary.height
+    //     self.swellDirection = data[0].swell.components.primary.direction +  "what" + name
+    //
+    // }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
+
+
+    //console.log(this.url)
+    // (function (urlcopy) {
+    //     return function() {
+    //         $.ajax({
+    //           url: urlcopy,
+    //           dataType: "jsonp",
+    //           success: function(data){
+    //                 //console.log(mSWurl)
+    //                 //console.log(data)
+    //                 self.swellHeight = data[0].swell.components.primary.height
+    //                 self.swellDirection = data[0].swell.components.primary.direction +  "what" + self.name
+    //             }
+    //       })
+    //
+    //     }
+    //     //console.log(urlcopy)
+    //
+    //
+    //
+    // })(self.url)
+  //   $.ajax({
+  //     url: self.url,
+  //     dataType: "jsonp",
+  //     success: function(data){
+  //           //console.log(mSWurl)
+  //           //console.log(data)
+  //
+  //
+  //          self.swellHeight = data[0].swell.components.primary.height
+  //          self.swellDirection = data[0].swell.components.primary.direction +  "what" + self.name}
+  // }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
+
 
     var largeInfowindow = new google.maps.InfoWindow();
 
-    this.marker.addListener('click', function(){
-            populateInfoWindow(this,largeInfowindow);
-    });
+   this.marker.addListener('click',( function(markerCopy){
+           console.log(markerCopy.name)
+           return function() {
+               populateInfoWindow(this,largeInfowindow,markerCopy);
+           }
+   })(self));
 
     // Two event listeners - one for mouseover, one for mouseout,
     // to change the colors back and forth.
@@ -216,7 +259,7 @@ var ViewModel = function(){
     })
 }
 // populates info window whem marker is clicked.
-function populateInfoWindow(marker, infowindow){
+function populateInfoWindow(marker, infowindow, self){
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
         infowindow.setContent('<div>' + marker.title + '</div>' +
@@ -275,14 +318,34 @@ function makeMarkerIcon(markerColor) {
 }
 
 function logResults(data){
-    //console.log(data[0].swell);
+    name = this.name
+    function whatever(){
+    //console.log(" This is the: " + name2);
     self.swellHeight = data[0].swell.components.primary.height
-    self.swellDirection = data[0].swell.components.primary.direction
+    self.swellDirection = data[0].swell.components.primary.direction +  "what" + name
 }
-function magicSeaWeedRequest(url){
+return (whatever)(name)
+
+}
+function magCopy (urlcopy, spotCopy) {
+    return function (){
+    //console.log("this is the name " + spotCopy)
+    console.log(urlcopy)
+    var f = spotCopy
+    //console.log(f)
+    //console.log(url)
     $.ajax({
-      url: url,
+      url: urlcopy,
       dataType: "jsonp",
-      jsonpCallback: "logResults"
-    });
+      success: function(data){
+          //console.log(data)
+          f.swellHeight = data[0].swell.components.primary.height
+
+
+          f.swellDirection = data[0].swell.components.primary.direction
+          console.log(f.swellDirection)
+
+      }
+  }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
+}
 }
