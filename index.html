@@ -45,28 +45,29 @@ https://developers.google.com/maps/documentation/javascript/fusiontableslayer
                 <!--<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
               <p class="nav-item nav-link" data-bind="text: s, click: showListings"></p>
               <p class="nav-item nav-link" data-bind="text: d, click: hideListings"></p>
+
+
+              <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" data-bind="textInput: filter, valueUpdate: 'afterkeydown'">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+
+
             </div>
           </div>
     </nav>
 
     <div class="container">
-      <div class="options-box">
-        <h1>Check the surf</h1>
-        <p data-bind="text: s, click: showListings"></p>
-        <p data-bind="text: d, click: hideListings"></p>
-        <div>
-        <!--  <input id="show-spots" type="button" value="Show Spots">
-          <input id="hide-spots" type="button" value="Hide Spots"> -->
-          <div class="spot-list">
-              <p>Filter: <input data-bind="textInput: filter, valueUpdate: 'afterkeydown'" /></p>
-             <!-- <p data-bind="text: filter"></p> -->
-              <ul data-bind="foreach: filteredItems">
-                <li class="spotList" data-bind="text: name, click: $parent.showSpot"></li>
-              </ul>
-          </div>
+        <div class="options-box">
+            <div>
+                <div class="spot-list">
+                    <ul data-bind="foreach: filteredItems">
+                        <li class="spotList" data-bind="text: name, click: $parent.showSpot"></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-      <div id="map"></div>
+        <div id="map"></div>
     </div>
         <script src="js/lib/jquery.min.js"></script>
         <script src="js/lib/knockout-3.2.0.js"></script>
