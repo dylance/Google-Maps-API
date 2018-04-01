@@ -145,57 +145,16 @@ var surfSpot = function(data){
             icon: defaultIcon,
     });
 
-
     magCopy(self.url, this)();
-
-    // $.getJSON(mSWurl).done(function(data){
-    //     self.swellHeight = data[0].swell.components.primary.height
-    //     self.swellDirection = data[0].swell.components.primary.direction +  "what" + name
-    //
-    // }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
-
-
-    //console.log(this.url)
-    // (function (urlcopy) {
-    //     return function() {
-    //         $.ajax({
-    //           url: urlcopy,
-    //           dataType: "jsonp",
-    //           success: function(data){
-    //                 //console.log(mSWurl)
-    //                 //console.log(data)
-    //                 self.swellHeight = data[0].swell.components.primary.height
-    //                 self.swellDirection = data[0].swell.components.primary.direction +  "what" + self.name
-    //             }
-    //       })
-    //
-    //     }
-    //     //console.log(urlcopy)
-    //
-    //
-    //
-    // })(self.url)
-  //   $.ajax({
-  //     url: self.url,
-  //     dataType: "jsonp",
-  //     success: function(data){
-  //           //console.log(mSWurl)
-  //           //console.log(data)
-  //
-  //
-  //          self.swellHeight = data[0].swell.components.primary.height
-  //          self.swellDirection = data[0].swell.components.primary.direction +  "what" + self.name}
-  // }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
-
 
     var largeInfowindow = new google.maps.InfoWindow();
 
-   this.marker.addListener('click',( function(markerCopy){
+    this.marker.addListener('click',( function(markerCopy){
            console.log(markerCopy.name)
            return function() {
                populateInfoWindow(this,largeInfowindow, markerCopy);
            }
-   })(self));
+    })(self));
 
     // Two event listeners - one for mouseover, one for mouseout,
     // to change the colors back and forth.
@@ -223,6 +182,8 @@ var ViewModel = function(){
 
     this.showSpot = function(clickedSpot){
         clickedSpot.marker.setMap(map)
+        map.setZoom(15)
+        map.panTo(clickedSpot.position)
     }
     // This function will loop through the markers array and display them all.
     this.showListings = function(){
@@ -304,7 +265,6 @@ function populateInfoWindow(marker, infowindow, self){
     //infowindow.open(map, marker);
     }
     infowindow.open(map, marker);
-
 }
 // This function takes in a COLOR, and then creates a new marker
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
@@ -320,35 +280,17 @@ function makeMarkerIcon(markerColor) {
     return markerImage;
 }
 
-function logResults(data){
-    name = this.name
-    function whatever(){
-    //console.log(" This is the: " + name2);
-    self.swellHeight = data[0].swell.components.primary.height
-    self.swellDirection = data[0].swell.components.primary.direction +  "what" + name
-}
-return (whatever)(name)
-
-}
 function magCopy (urlcopy, spotCopy) {
     return function (){
-    //console.log("this is the name " + spotCopy)
-    console.log(urlcopy)
-    var f = spotCopy
-    //console.log(f)
-    //console.log(url)
-    $.ajax({
-      url: urlcopy,
-      dataType: "jsonp",
-      success: function(data){
-          //console.log(data)
-          f.swellHeight = data[0].swell.components.primary.height
-
-
-          f.swellDirection = data[0].swell.components.primary.direction
-          console.log(f.swellDirection)
-
-      }
-  }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
-}
+        console.log(urlcopy)
+        var f = spotCopy
+        $.ajax({
+          url: urlcopy,
+          dataType: "jsonp",
+          success: function(data){
+              f.swellHeight = data[0].swell.components.primary.height
+              f.swellDirection = data[0].swell.components.primary.direction
+          }
+        }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
+    }
 }
