@@ -1,5 +1,5 @@
-var map;
-var surfSpots = [
+let map;
+let surfSpots = [
     {title: 'Pt Dume',
      location: {lat: 34.001201,lng: -118.806442},
      id: "854"},
@@ -16,7 +16,7 @@ var surfSpots = [
     location: {lat: 34.008341 ,lng: -118.814812},
     id: "2610"}
 ]
-var mSWurl = "http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id="
+let mSWurl = "http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id="
 function initMap() {
     //Constructor creates a new map - only center and zoom are required
     map = new google.maps.Map(document.getElementById('map'), {
@@ -143,7 +143,7 @@ function initMap() {
 
 
 
-    //var bounds = new google.maps.LatLngBounds();
+    //let bounds = new google.maps.LatLngBounds();
 
     // document.getElementById('show-spots').addEventListener('click', showListings);
     // document.getElementById('hide-spots').addEventListener('click', hideListings);
@@ -152,7 +152,7 @@ function initMap() {
 
 }
 
-var surfSpot = function(data){
+let surfSpot = function(data){
     self = this
 
     this.name = data.title
@@ -170,10 +170,10 @@ var surfSpot = function(data){
     this.display = ko.observable(true)
 
     // Style the markers a bit. This will be our listing marker icon.
-    var defaultIcon = makeMarkerIcon('0091ff');
+    let defaultIcon = makeMarkerIcon('0091ff');
     // Create a "highlighted location" marker color for when the user
     // mouses over the marker.
-    var highlightedIcon = makeMarkerIcon('FFFF24');
+    let highlightedIcon = makeMarkerIcon('FFFF24');
 
     this.marker = new google.maps.Marker({
             position: this.position,
@@ -184,7 +184,7 @@ var surfSpot = function(data){
 
     magCopy(self.url, this)();
 
-    var largeInfowindow = new google.maps.InfoWindow();
+    let largeInfowindow = new google.maps.InfoWindow();
 
     this.marker.addListener('click',( function(markerCopy){
            console.log(markerCopy.name)
@@ -204,8 +204,8 @@ var surfSpot = function(data){
     });
 }
 
-var ViewModel = function(){
-    var self = this
+let ViewModel = function(){
+    let self = this
 
     this.s = ko.observable('show spots!')
     this.d = ko.observable('hide spots!')
@@ -224,7 +224,7 @@ var ViewModel = function(){
     }
     // This function will loop through the markers array and display them all.
     this.showListings = function(){
-        var bounds = new google.maps.LatLngBounds();
+        let bounds = new google.maps.LatLngBounds();
         // Extend the boundaries of the map for each marker and display the marker
         self.spotList().forEach(function(spot){
             spot.marker.setMap(map)
@@ -240,7 +240,7 @@ var ViewModel = function(){
     }
 
     this.filteredItems = ko.computed(function(){
-        var filter2 = self.filter().toLowerCase();
+        let filter2 = self.filter().toLowerCase();
 
         if (!filter2){
             return self.spotList()
@@ -272,25 +272,25 @@ function populateInfoWindow(marker, infowindow, self){
             infowindow.setMarker = null ;
         });
         /* Commenting out google streeview temporarily
-        var streetViewService = new google.maps.StreetViewService();
-        var radius = 50;
+        let streetViewService = new google.maps.StreetViewService();
+        let radius = 50;
         // In case the status is OK, which means the pano was found, compute the
         // position of the streetview image, then calculate the heading, then get a
         // panorama from that and set the options
         function getStreetView(data, status){
             if ( status == google.maps.StreetViewStatus.OK){
-            var nearStreetViewLocation = data.location.latLng;
-            var heading = google.maps.geometry.spherical.computeHeading(
+            let nearStreetViewLocation = data.location.latLng;
+            let heading = google.maps.geometry.spherical.computeHeading(
                 nearStreetViewLocation, marker.position);
                 infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
-                var panoramaOptions = {
+                let panoramaOptions = {
                     position: nearStreetViewLocation,
                     pov: {
                         heading: heading,
                         pitch: -30
                     }
                 };
-            var panorama = new google.maps.StreetViewPanorama(
+            let panorama = new google.maps.StreetViewPanorama(
                 document.getElementById('pano'), panoramaOptions);
             }
             else {
@@ -309,7 +309,7 @@ function populateInfoWindow(marker, infowindow, self){
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
 // of 0, 0 and be anchored at 10, 34).
 function makeMarkerIcon(markerColor) {
-    var markerImage = new google.maps.MarkerImage(
+    let markerImage = new google.maps.MarkerImage(
     'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|'+ markerColor +
     '|40|_|%E2%80%A2',
     new google.maps.Size(21, 34),
@@ -322,7 +322,7 @@ function makeMarkerIcon(markerColor) {
 function magCopy (urlcopy, spotCopy) {
     return function (){
         console.log(urlcopy)
-        var f = spotCopy
+        let f = spotCopy
         $.ajax({
           url: urlcopy,
           dataType: "jsonp",
