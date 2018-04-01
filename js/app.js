@@ -124,6 +124,7 @@ var surfSpot = function(data){
     this.url = mSWurl + this.spotID
     this.swellHeight = null;
     this.swellDirection = null;
+    this.swellPeriod = null;
 
     // TO DO: Add Images
     // this.imgSrc = ko.observableArray(data.imgSrc)
@@ -226,7 +227,9 @@ function populateInfoWindow(marker, infowindow, self){
         infowindow.marker = marker;
         infowindow.setContent('<div>' + self.name + '</div>' +
             '<div> Wave height: ' + self.swellHeight + '</div>' +
-            '<div> Wave direction: ' + self.swellDirection + '</div>');
+            '<div> Swell Angle: ' + self.swellDirection + '</div>' +
+            '<div> Swell Period: ' + self.swellPeriod + '</div>' +
+            '<div> Swell data provided by magicseaweed.com   </div>');
         infowindow.open(map, marker);
         // clear marker property if info window closed
         infowindow.addListener('closeclick', function(){
@@ -290,6 +293,7 @@ function magCopy (urlcopy, spotCopy) {
           success: function(data){
               f.swellHeight = data[0].swell.components.primary.height
               f.swellDirection = data[0].swell.components.primary.direction
+              f.swellPeriod = data[0].swell.components.primary.period
           }
         }).fail(function(){alert("Magic SeaWeed API cold not be loaded")});
     }
