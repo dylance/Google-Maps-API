@@ -39,6 +39,21 @@ html,
         /*left: 242px;
         position: absolute;*/
         right: 0px;
+
+      }
+
+      #showSpots {
+          margin-bottom: 0px;
+
+      }
+/*  maybe come back to this
+      .navbar-collapse {
+    max-height: 100px;
+}*/
+
+      #collapseExample {
+
+
       }
       /*
       .options-box {

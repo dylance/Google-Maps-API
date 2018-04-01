@@ -36,19 +36,22 @@ https://developers.google.com/maps/documentation/javascript/fusiontableslayer
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <span class="navbar-brand mb-0 h1">Malibu Surf Check</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="collapse navbar-collapse " id="navbarNavAltMarkup" >
             <div class="navbar-nav">
                 <!--<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
-              <p class="nav-item nav-link" data-bind="text: s, click: showListings"></p>
-              <p class="nav-item nav-link" data-bind="text: d, click: hideListings"></p>
-              <ul class="nav-item nav-link" data-bind="foreach: filteredItems">
-                  <li class="spotList" data-bind="text: name, click: $parent.showSpot"></li>
-              </ul>
+                <p class="nav-item nav-link" id="showSpots">
+                    <span  data-bind="text: s, click: showListings"></span>
+                    <span  data-bind="text: d, click: hideListings"></span>
+                </p>
+
+              <p class="nav-item nav-link" data-bind="foreach: filteredItems">
+                  <span class="spotList" data-bind="text: name, click: $parent.showSpot"></span>
+              </p>
               <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search Spots" aria-label="Search" data-bind="textInput: filter, valueUpdate: 'afterkeydown'">
                   <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
