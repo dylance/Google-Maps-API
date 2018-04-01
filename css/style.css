@@ -40,6 +40,16 @@ html,
         position: absolute;*/
         right: 0px;
 
+        position: fixed;
+
+
+      }
+
+      #toTheTop{
+
+          width: 100%;
+          position: fixed;
+          top: 0;
       }
 
       #showSpots {
