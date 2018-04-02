@@ -16,7 +16,7 @@ let surfSpots = [
     location: {lat: 34.008341 ,lng: -118.814812},
     id: "2610"}
 ]
-let mSWurl = "http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id="
+let mSWurl = "http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id=";
 function initMap() {
     //Constructor creates a new map - only center and zoom are required
     map = new google.maps.Map(document.getElementById('map'), {
@@ -24,157 +24,144 @@ function initMap() {
         zoom: 12,
         styles:
         [
-  {
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#fffec4"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "landscape",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "visibility": "on"
-      }
-    ]
-  },
-  {
-    "featureType": "landscape.natural.terrain",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#65a75e"
-      },
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "labels.text",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#a75808"
-      }
-    ]
-  },
+          {
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#fffec4"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "elementType": "labels",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "visibility": "on"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape.natural.terrain",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#65a75e"
+              },
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#a75808"
+              }
+            ]
+          },
 
-  {
-    "featureType": "road.local",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#247212"
-      }
-    ]
-  },
-  {
-    "featureType": "transit",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#32e8ff"
-      },
-      {
-        "weight": 4.5
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text",
-    "stylers": [
-      {
-        "color": "#a305ff"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {
-        "color": "#fcff00"
-      }
-    ]
-  }
-],
-        mapTypeControl: false
+          {
+            "featureType": "road.local",
+            "elementType": "labels",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#247212"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#32e8ff"
+              },
+              {
+                "weight": 4.5
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text",
+            "stylers": [
+              {
+                "color": "#a305ff"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "color": "#fcff00"
+              }
+            ]
+          }
+        ],
+    mapTypeControl: false;
     });
-
-
-
-    //let bounds = new google.maps.LatLngBounds();
-
-    // document.getElementById('show-spots').addEventListener('click', showListings);
-    // document.getElementById('hide-spots').addEventListener('click', hideListings);
-
     ko.applyBindings(new ViewModel())
-
-}
+};
 
 let surfSpot = function(data){
-    self = this
+    self = this;
 
-    this.name = data.title
-    this.spotID = data.id
-    this.url = mSWurl + this.spotID
+    this.name = data.title;
+    this.spotID = data.id;
+    this.url = mSWurl + this.spotID;
     this.swellHeight = null;
     this.swellDirection = null;
     this.swellPeriod = null;
-
     // TO DO: Add Images
     // this.imgSrc = ko.observableArray(data.imgSrc)
     // this.nickName = ko.observableArray(data.nickName)
-    this.position = data.location
-
-    this.display = ko.observable(true)
-
+    this.position = data.location;
+    this.display = ko.observable(true);
     // Style the markers a bit. This will be our listing marker icon.
     let defaultIcon = makeMarkerIcon('0091ff');
     // Create a "highlighted location" marker color for when the user
     // mouses over the marker.
     let highlightedIcon = makeMarkerIcon('FFFF24');
-
     this.marker = new google.maps.Marker({
             position: this.position,
             title: this.name,
@@ -187,14 +174,13 @@ let surfSpot = function(data){
     let largeInfowindow = new google.maps.InfoWindow();
 
     this.marker.addListener('click',( function(markerCopy){
-           console.log(markerCopy.name)
-           return function() {
+            return function() {
                populateInfoWindow(this,largeInfowindow, markerCopy);
            }
     })(self));
-
     // Two event listeners - one for mouseover, one for mouseout,
     // to change the colors back and forth.
+
     this.marker.addListener('mouseover', function() {
         this.setIcon(highlightedIcon);
     });
@@ -205,29 +191,29 @@ let surfSpot = function(data){
 }
 
 let ViewModel = function(){
-    let self = this
+    let self = this;
 
-    this.s = ko.observable('show spots!')
-    this.d = ko.observable('hide spots!')
-    this.filter =  ko.observable('')
+    this.s = ko.observable('show spots!');
+    this.d = ko.observable('hide spots!');
+    this.filter =  ko.observable('');
 
-    this.spotList = ko.observableArray([])
+    this.spotList = ko.observableArray([]);
 
     surfSpots.forEach(function(spot){
-        self.spotList.push(new surfSpot(spot))
+        self.spotList.push(new surfSpot(spot));
     })
 
     this.showSpot = function(clickedSpot){
-        clickedSpot.marker.setMap(map)
-        map.setZoom(15)
-        map.panTo(clickedSpot.position)
+        clickedSpot.marker.setMap(map);
+        map.setZoom(15);
+        map.panTo(clickedSpot.position);
     }
     // This function will loop through the markers array and display them all.
     this.showListings = function(){
         let bounds = new google.maps.LatLngBounds();
         // Extend the boundaries of the map for each marker and display the marker
         self.spotList().forEach(function(spot){
-            spot.marker.setMap(map)
+            spot.marker.setMap(map);
             bounds.extend(spot.position);
         })
         map.fitBounds(bounds);
@@ -235,7 +221,7 @@ let ViewModel = function(){
     // This function will loop through the listings and hide them all.
     this.hideListings = function(){
         self.spotList().forEach(function(spot){
-            spot.marker.setMap(null)
+            spot.marker.setMap(null);
         })
     }
 
@@ -243,7 +229,7 @@ let ViewModel = function(){
         let filter2 = self.filter().toLowerCase();
 
         if (!filter2){
-            return self.spotList()
+            return self.spotList();
         }
         else {
             return ko.utils.arrayFilter(self.spotList(), function(spot){
@@ -269,39 +255,8 @@ function populateInfoWindow(marker, infowindow, self){
         infowindow.open(map, marker);
         // clear marker property if info window closed
         infowindow.addListener('closeclick', function(){
-            infowindow.setMarker = null ;
+            infowindow.setMarker = null;
         });
-        /* Commenting out google streeview temporarily
-        let streetViewService = new google.maps.StreetViewService();
-        let radius = 50;
-        // In case the status is OK, which means the pano was found, compute the
-        // position of the streetview image, then calculate the heading, then get a
-        // panorama from that and set the options
-        function getStreetView(data, status){
-            if ( status == google.maps.StreetViewStatus.OK){
-            let nearStreetViewLocation = data.location.latLng;
-            let heading = google.maps.geometry.spherical.computeHeading(
-                nearStreetViewLocation, marker.position);
-                infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
-                let panoramaOptions = {
-                    position: nearStreetViewLocation,
-                    pov: {
-                        heading: heading,
-                        pitch: -30
-                    }
-                };
-            let panorama = new google.maps.StreetViewPanorama(
-                document.getElementById('pano'), panoramaOptions);
-            }
-            else {
-                infowindow.setContent('<div>No Street View Found</div>');
-            }
-        }
-        // use street to get cloest streetview image within
-        // 50 meters of teh markers position
-    streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);*/
-    //open info window on correct marker
-    //infowindow.open(map, marker);
     }
     infowindow.open(map, marker);
 }
@@ -321,8 +276,7 @@ function makeMarkerIcon(markerColor) {
 
 function magCopy (urlcopy, spotCopy) {
     return function (){
-        console.log(urlcopy)
-        let f = spotCopy
+        let f = spotCopy;
         $.ajax({
           url: urlcopy,
           dataType: "jsonp",
