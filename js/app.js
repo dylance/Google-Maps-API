@@ -207,8 +207,9 @@ let ViewModel = function() {
 
     this.showSpot = function(clickedSpot) {
         clickedSpot.marker.setMap(map);
-        map.setZoom(15);
+        map.setZoom(14);
         map.panTo(clickedSpot.position);
+        //clickedSpot.marker.setAnimation(google.maps.Animation.BOUNCE)
     }
     // This function will loop through the markers array and display them all.
     this.showListings = function() {
@@ -269,10 +270,10 @@ function makeMarkerIcon(markerColor) {
     let markerImage = new google.maps.MarkerImage(
         'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + markerColor +
         '|40|_|%E2%80%A2',
-        new google.maps.Size(35, 60),
+        new google.maps.Size(10, 34),
         new google.maps.Point(0, 0),
         new google.maps.Point(10, 34),
-        new google.maps.Size(35, 60));
+        new google.maps.Size(10, 34));
     return markerImage;
 }
 
