@@ -1,71 +1,69 @@
-html,
-      body {
-        font-family: Arial, sans-serif;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      /*
+html, body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*
       .container {
         height: 100%;
         position: relative;
       } */
-      input {
-        font-size: 12px;
-      }
-      h1 {
-        color: #525454;
-        font-size: 22px;
-        margin: 0 0 10px 0;
-        text-align: center;
-      }
-      #hide-listings,
-      #show-listings {
-        width: 48%;
-      }
-      hr {
-        background: #D0D7D9;
-        height: 1px;
-        margin: 20px 0 20px 0;
-        border: none;
-      }
 
-      ul {
-  list-style-type: none;
+input {
+    font-size: 12px;
 }
-      #map {
-        bottom:0px;
-        height: 100%;
-        /*left: 242px;
+
+h1 {
+    color: #525454;
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+#hide-listings, #show-listings {
+    width: 48%;
+}
+
+hr {
+    background: #D0D7D9;
+    height: 1px;
+    margin: 20px 0 20px 0;
+    border: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#map {
+    bottom: 0px;
+    height: 100%;
+    /*left: 242px;
         position: absolute;*/
-        right: 0px;
+    right: 0px;
+    position: fixed;
+}
 
-        position: fixed;
+#toTheTop {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
 
+#showSpots {
+    margin-bottom: 0px;
+}
 
-      }
-
-      #toTheTop{
-
-          width: 100%;
-          position: fixed;
-          top: 0;
-      }
-
-      #showSpots {
-          margin-bottom: 0px;
-
-      }
 /*  maybe come back to this
       .navbar-collapse {
     max-height: 100px;
 }*/
 
-      #collapseExample {
+#collapseExample {}
 
-
-      }
-      /*
+/*
       .options-box {
         background: #fff;
         border: 1px solid #999;
@@ -76,12 +74,16 @@ html,
         text-align: left;
         width: 220px;
       }*/
-      #pano {
-        width: 200px;
-        height: 200px;
-      }
-      .text {
-        font-size: 12px;
-      }
 
-      .spotList:hover{cursor:pointer;}
+#pano {
+    width: 200px;
+    height: 200px;
+}
+
+.text {
+    font-size: 12px;
+}
+
+.spotList:hover {
+    cursor: pointer;
+}
