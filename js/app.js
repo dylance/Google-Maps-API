@@ -173,7 +173,7 @@ let surfSpot = function(data) {
         icon: defaultIcon,
     });
 
-    magCopy(self.url, this)();
+    magicSeaweedAjax(self.url, this)();
 
     let largeInfowindow = new google.maps.InfoWindow();
 
@@ -276,7 +276,7 @@ function makeMarkerIcon(markerColor) {
     return markerImage;
 }
 
-function magCopy(urlcopy, spotCopy) {
+function magicSeaweedAjax(urlcopy, spotCopy) {
     return function() {
         let f = spotCopy;
         $.ajax({
