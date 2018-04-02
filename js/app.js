@@ -188,6 +188,8 @@ let surfSpot = function(data) {
     this.marker.addListener('mouseout', function() {
         this.setIcon(defaultIcon);
     });
+    // display marker once its made
+    this.marker.setMap(map)
 }
 
 let ViewModel = function() {
@@ -291,5 +293,4 @@ function magicSeaweedAjax(urlcopy, spotCopy) {
 
 function googleError(){
     alert("Google was unable to load the Google Maps API. Try reloading the page.")
-
 }
