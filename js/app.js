@@ -1,11 +1,11 @@
 let map;
 let surfSpots = [{
-        title: 'Pt Dume',
+        title: 'County Line',
         location: {
-            lat: 34.001201,
-            lng: -118.806442
+            lat: 34.051425,
+            lng: -118.95996
         },
-        id: "854"
+        id: "277"
     },
     {
         title: 'Leo Carillo',
@@ -16,12 +16,20 @@ let surfSpots = [{
         id: "2642"
     },
     {
-        title: 'County Line',
+        title: 'Westward Beach',
         location: {
-            lat: 34.051425,
-            lng: -118.95996
+            lat: 34.008341,
+            lng: -118.814812
         },
-        id: "277"
+        id: "2610"
+    },
+    {
+        title: 'Pt Dume',
+        location: {
+            lat: 34.001201,
+            lng: -118.806442
+        },
+        id: "854"
     },
     {
         title: 'Malibu Pt',
@@ -30,14 +38,6 @@ let surfSpots = [{
             lng: -118.67795
         },
         id: "279"
-    },
-    {
-        title: 'Westward Beach',
-        location: {
-            lat: 34.008341,
-            lng: -118.814812
-        },
-        id: "2610"
     }
 ]
 let mSWurl = 'http://magicseaweed.com/api/c601eb5d859031e96bd33e9f0ea25b26/forecast/?spot_id=';
@@ -120,12 +120,8 @@ function initMap() {
                 "featureType": "water",
                 "elementType": "geometry.fill",
                 "stylers": [{
-                        "color": "#32e8ff"
-                    },
-                    {
-                        "weight": 4.5
-                    }
-                ]
+                    "color": "#32e8ff"
+                }]
             },
             {
                 "featureType": "water",
@@ -197,8 +193,8 @@ let surfSpot = function(data) {
 let ViewModel = function() {
     let self = this;
 
-    this.s = ko.observable('show spots!');
-    this.d = ko.observable('hide spots!');
+    this.showSpots = ko.observable('Show Spots!  | ');
+    this.hideSpots = ko.observable('Hide Spots!');
     this.filter = ko.observable('');
 
     this.spotList = ko.observableArray([]);

@@ -16,7 +16,7 @@
 <body>
     <div id="map"></div>
     <nav id="toTheTop" class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <span class="navbar-brand mb-0 h1">Malibu Surf Check</span>
+        <span id="appTitle" class="navbar-brand mb-0 h1">Malibu Surf Check</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,12 +24,12 @@
             <div class="navbar-nav">
                 <!--<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
                 <p class="nav-item nav-link" id="showSpots">
-                    <span data-bind="text: s, click: showListings"></span>
-                    <span data-bind="text: d, click: hideListings"></span>
+                    <span class="showSpots" data-bind="text: showSpots, click: showListings"></span>
+                    <span class="showSpots" data-bind="text: hideSpots, click: hideListings"></span>
                 </p>
 
                 <p class="nav-item nav-link" data-bind="foreach: filteredItems">
-                    <span class="spotList" data-bind="text: name, click: $parent.showSpot"></span>
+                    <span id="surfSpot" class="spotList" data-bind="text: name, click: $parent.showSpot"></span>
                 </p>
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search Spots" aria-label="Search" data-bind="textInput: filter, valueUpdate: 'afterkeydown'">
