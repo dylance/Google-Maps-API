@@ -138,7 +138,7 @@ function initMap() {
             ]
           }
         ],
-    mapTypeControl: false;
+    mapTypeControl: false
     });
     ko.applyBindings(new ViewModel())
 };
@@ -158,10 +158,10 @@ let surfSpot = function(data){
     this.position = data.location;
     this.display = ko.observable(true);
     // Style the markers a bit. This will be our listing marker icon.
-    let defaultIcon = makeMarkerIcon('0091ff');
+    let defaultIcon = makeMarkerIcon('0322bc');
     // Create a "highlighted location" marker color for when the user
     // mouses over the marker.
-    let highlightedIcon = makeMarkerIcon('FFFF24');
+    let highlightedIcon = makeMarkerIcon('e80000');
     this.marker = new google.maps.Marker({
             position: this.position,
             title: this.name,
@@ -267,10 +267,10 @@ function makeMarkerIcon(markerColor) {
     let markerImage = new google.maps.MarkerImage(
     'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|'+ markerColor +
     '|40|_|%E2%80%A2',
-    new google.maps.Size(21, 34),
+    new google.maps.Size(35, 60),
     new google.maps.Point(0, 0),
     new google.maps.Point(10, 34),
-    new google.maps.Size(21,34));
+    new google.maps.Size(35,60));
     return markerImage;
 }
 
