@@ -288,3 +288,8 @@ function magicSeaweedAjax(urlcopy, spotCopy) {
         });
     }
 }
+
+function googleError(){
+    alert("Google was unable to load the Google Maps API. Try reloading the page.")
+
+}
