@@ -2,7 +2,7 @@
 
 ### About
 
-This is the fifth project in the Full Stack Web Developer Nanodegree program from Udacity.  The project is a single page web app that uses the google maps javascript API, magic seaweed API, and knockoutJS framework to display surf spots on a map with additional info about each spot. The Google Maps API is used to display a map on the screen with markers for reach surf spot. The Magic Seaweed API is used to show surf conditions for each spot. KnockoutJS uses the Model View ViewModel paradigm to handle all the data and update the view using the ViewModel.
+This is the fifth project in the Full Stack Web Developer Nanodegree program from Udacity.  The project is a single page web app that uses the google maps javascript API, magic seaweed API, and knockoutJS framework to display surf spots on a map with additional info about each spot. The Google Maps API is used to display a map on the screen with markers for reach surf spot. The Magic Seaweed API is used to show surf conditions for each spot. KnockoutJS uses the Model View ViewModel paradigm to handle all the data, and search filtering to update the view with the viewmodel.
 
 The surf spot map can be viewed at:  http://chilldyl.com
 
