@@ -235,8 +235,10 @@ let ViewModel = function() {
         } else {
             return ko.utils.arrayFilter(self.spotList(), function(spot) {
                 if (spot.name.toLowerCase().indexOf(filter2) >= 0) {
+                    spot.marker.setMap(map)
                     return true;
                 } else {
+                    spot.marker.setMap(null)
                     return false;
                 }
             })
