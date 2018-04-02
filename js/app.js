@@ -176,7 +176,7 @@ let surfSpot = function(data) {
     this.marker.addListener('click', (function(markerCopy) {
         return function() {
             populateInfoWindow(this, largeInfowindow, markerCopy);
-            animateMarker(this,markerCopy)
+            animateMarker(this, markerCopy)
         }
     })(self));
     // Two event listeners - one for mouseover, one for mouseout,
@@ -211,7 +211,9 @@ let ViewModel = function() {
         map.setZoom(14);
         map.panTo(clickedSpot.position);
         clickedSpot.marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){ clickedSpot.marker.setAnimation(null); }, 1500);
+        setTimeout(function() {
+            clickedSpot.marker.setAnimation(null);
+        }, 1500);
     }
     // This function will loop through the markers array and display them all.
     this.showListings = function() {
@@ -266,9 +268,11 @@ function populateInfoWindow(marker, infowindow, self) {
     infowindow.open(map, marker);
 }
 // Marker bounces twice when clicked on
-function animateMarker(marker,self){
+function animateMarker(marker, self) {
     self.marker.setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(function(){ self.marker.setAnimation(null); }, 1500);
+    setTimeout(function() {
+        self.marker.setAnimation(null);
+    }, 1500);
 }
 // This function takes in a COLOR, and then creates a new marker
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
@@ -301,6 +305,6 @@ function magicSeaweedAjax(urlcopy, spotCopy) {
     }
 }
 
-function googleError(){
+function googleError() {
     alert("Google was unable to load the Google Maps API. Try reloading the page.")
 }
