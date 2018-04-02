@@ -33,3 +33,5 @@ Magic SeaWeed API:
 https://magicseaweed.com/developer/forecast-api
 
 Udacity Google Maps API Course
+
+Google Maps Styling Wizard: https://mapstyle.withgoogle.com/
